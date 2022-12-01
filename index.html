@@ -1,40 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	<meta name="description" content="This is where your description goes">
+    	<meta name="keywords" content="one, two, three">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tic Tac Toe</title>
 
-    <link rel="stylesheet" href="style.css">
-    <title>Tic-tac-toe</title>
-</head>
+		<!-- external CSS link -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		
+		<!-- create a div/section with a class and id name. separation of concerns in CSS(class) and js (id)
 
-<body>
-    <div class="main-container">
-        <section class="title">
-            <h1>Tic-Tac-Toe</h1>
-        </section>
-        <section class="playerUp">
-            Player. <span class="playerX">X</span>
-        </section>
-        <section class="inner-container">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-        </section>
-        <section class="playerWin"></section>
-        <section class="control-btn">
-            <button id="restart-btn">Start Over.</button>
-        </section>
+		the board game can be created via a grid 3*3 format. or using borders, or emmet abbreviation by typing in .cell  tip type .cell*no of cells you wish
+		
+		create a win or a lose pop-up(alert?) and a restart button-->
 
-    </div>
-</body>
-
+		<section class="board" id="board">
+			<div class="cell" id="cell">X</div>
+			<div class="cell" id="cell">X</div>
+			<div class="cell" id="cell">O</div>
+			<div class="cell" id="cell">0</div>
+			<div class="cell" id="cell"></div>
+			<div class="cell" id="cell"></div>
+			<div class="cell" id="cell"></div>
+			<div class="cell" id="cell"></div>
+			<div class="cell" id="cell"></div>
+		</section>
+		
+	</body>
+	<script type="text/javascript" src="js/main.js"></script>
 </html>
