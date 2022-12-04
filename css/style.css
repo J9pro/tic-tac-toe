@@ -42,6 +42,9 @@
   /* text-align: center; justified above */
 }
 
+.result, .button-container {
+  margin: 0 auto;
+}
 
 /******************************************
 /* ADDITIONAL STYLES
