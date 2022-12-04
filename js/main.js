@@ -13,6 +13,13 @@
 // function to check the status of the game and winner
 
 //function to restart the game
+document.querySelector("#restart").addEventListener('click', () => {
+    document.querySelectorAll(".board div").forEach(element => {
+        element.textContent = ''
+    })
+})
+
+
 
 let turn = 'X'
 document.querySelectorAll(".board div").forEach(element => {
@@ -21,7 +28,6 @@ document.querySelectorAll(".board div").forEach(element => {
           element.textContent = turn;
           turn === "O" ? (turn = "X") : (turn = "O");
         }
-        return
     })
 })
 
