@@ -1,4 +1,4 @@
-div<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
     	<meta charset="utf-8">
@@ -13,12 +13,9 @@ div<!DOCTYPE html>
 	</head>
 	<body>
 		
-		<!-- create a div/section with a class and id name. separation of concerns in CSS(class) and js (id)
-
-		the board game can be created via a grid 3*3 format. or using borders, or emmet abbreviation by typing in .cell  tip type .cell*no of cells you wish
-		
-		create a win or a lose pop-up(alert?) and a restart div-->
-
+		<!-- show current turn-->
+		<h2 id="turn"></h2>
+		<!--the board game can be created via a grid 3*3 format. or using borders, or emmet abbreviation by typing in .cell  tip type .cell*no of cells you wish-->
 		<section class="board" id="board">
 			<div class="cell" id="a1"></div>
 			<div class="cell" id="a2"></div>
@@ -33,7 +30,7 @@ div<!DOCTYPE html>
 		
 		<section id='result'>
 
-			<span id="gameResult">WIN</span>
+			<span id="gameResult"></span>
 			<button id="restart">Play Again</button>
 			
 		</section>

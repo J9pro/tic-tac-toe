@@ -42,13 +42,17 @@
   /* text-align: center; justified above */
 }
 
-#result {
+#result, #turn {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: -25vh;
 }
 
+#turn {
+  margin-top: 25vh;
+  margin-bottom: -25vh;
+}
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
