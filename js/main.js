@@ -15,19 +15,18 @@
 //function to restart the game
 document.querySelector("#restart").addEventListener('click', () => {
     document.querySelectorAll(".board div").forEach(element => {
-        element.textContent = ''
+        element.innerHTML = ''
     })
 })
-
-
 
 let turn = 'X'
 document.querySelectorAll(".board div").forEach(element => {
     element.addEventListener('click', () => {
-        if (element.textContent === "") {
-          element.textContent = turn;
+        if (element.innerHTML === "") {
+          element.innerHTML = turn;
           turn === "O" ? (turn = "X") : (turn = "O");
         }
+        checkWin()
     })
 })
 
@@ -35,21 +34,51 @@ document.querySelectorAll(".board div").forEach(element => {
 
 // document.getElementById(".a1").addEventListener('click',playerX)
 
-function playerX(){
-//     let a1 = document.querySelector("#a1").textContent
-//     let a2 = document.querySelector("#a2").innerHTML
-//     let a3 = document.querySelector("#a3").innerHTML
-//     let b1 = document.querySelector("#b1").innerHTML
-//     let b2 = document.querySelector("#b2").innerHTML
-//     let b3 = document.querySelector("#b3").innerHTML
-//     let c2 = document.querySelector("#c2").innerHTML
-//     let c1 = document.querySelector("#c1").innerHTML
-//     let c3 = document.querySelector("#c3").innerHTML
+let playerX = 'X'
+let playerO = 'O'
 
-//         console.log("WIn")
+
+
+//function playerX(){
     
-//     console.log("check")
-    let winningConditions = [
-        ['1', '2', '3']
-    ]
+    //         console.log("WIn")
+    
+    //     console.log("check")
+    //     let winningConditions = [
+        //         ['1', '2', '3']
+        //     ]
+        //}
+        
+        function checkWin(cell) {
+            let a1 = document.querySelector("#a1").innerHTML
+            let a2 = document.querySelector("#a2").innerHTML
+            let a3 = document.querySelector("#a3").innerHTML
+            let b1 = document.querySelector("#b1").innerHTML
+            let b2 = document.querySelector("#b2").innerHTML
+            let b3 = document.querySelector("#b3").innerHTML
+            let c1 = document.querySelector("#c1").innerHTML
+            let c2 = document.querySelector("#c2").innerHTML
+            let c3 = document.querySelector("#c3").innerHTML
+    console.log(cell)
+    if (
+      (a1 === a2 && a2 === a3 && a1 !== "") ||
+      (b1 === b2 && b2 === b3 && b1 !== "") ||
+      (c1 === c2 && c2 === c3) && c1 !== "" ||
+      (a1 === b1 && b1 === c1) && a1 !== "" ||
+      (a2 === b2 && b2 === c2) && a2 !== "" ||
+      (a3 === b3 && b3 === c3) && a3 !== "" ||
+      (a1 === b2 && b2 === c3) && a1 !== "" ||
+      (a3 === b2 && b2 === c1) && a3 !== ""
+  ) {
+      console.log("WIN");
+    }
+
+    //check if player won
+    //check for tie
+    
+    //change gameResult
+    //display restart button
+    
+    
+    //if not, just keep going
 }
