@@ -1,7 +1,7 @@
 # Our Awesome Tic-Tac-Toe project
 Our attempt at a tic tac toe as a first group project in order to get to know each other and learn how to work together!
 
-**Link to project:** http://recruiters-love-seeing-live-demos.com/
+**Link to project:** http://recruiters-love-seeing-live-demos.com
 
 ![alt tag](http://placecorgi.com/1200/650)
 
