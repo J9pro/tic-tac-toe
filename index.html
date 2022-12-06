@@ -1,4 +1,4 @@
-button<!DOCTYPE html>
+div<!DOCTYPE html>
 <html lang="en">
 	<head>
     	<meta charset="utf-8">
@@ -17,7 +17,7 @@ button<!DOCTYPE html>
 
 		the board game can be created via a grid 3*3 format. or using borders, or emmet abbreviation by typing in .cell  tip type .cell*no of cells you wish
 		
-		create a win or a lose pop-up(alert?) and a restart button-->
+		create a win or a lose pop-up(alert?) and a restart div-->
 
 		<section class="board" id="board">
 			<div class="cell" id="a1"></div>
@@ -31,11 +31,12 @@ button<!DOCTYPE html>
 			<div class="cell" id="c3"></div>
 		</section>
 		
-		<section class="result">WIN</section>
-		<section class="button-container">
+		<section id='result'>
+
+			<span>WIN</span>
 			<button id="restart">Play Again</button>
+			
 		</section>
-		
 	</body>
 	<script type="text/javascript" src="js/main.js"></script>
 </html>
