@@ -20,6 +20,7 @@ restartBtn.addEventListener("click", () => {
         result.innerHTML = "";
         element.style.color = 'black'
         gameOn = true;
+        document.querySelector("#turn").style.display = "";
         // letsPlay();
     });
 });
