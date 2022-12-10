@@ -1,8 +1,10 @@
 * {
-    box-sizing: border - box;
+    box-sizing: border-box;
 }
 
-
+body {
+    background: #bce3e2 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAJ1BMVEUAAAC86uS01ty84uS0ztTE6uS02ty00tS82ty85uS01tS83ty0ytTzg0XZAAAAAXRSTlMAQObYZgAAAAlwSFlzAAAOxAAADsQBlSsOGwAABDtJREFUOI0N0M93mnYAAPDvvzDN0/jspcZXpfYiMBHpJcBEgqf00HY7RVmU2UvEgIRc/PH8UXsRvgMNXpp167rsEuWJlF2aZGmz9I9a/4PP+4D+Y6uIey4t7pU67FjP1K0lLv+IzMEzB199fOAbaHOqU3XSjQuxlDRS++BoUrF7HtdJxC1y8wUub05sjSgSfZC5qcdb0d8D2mYX11IF9enyP5jycAz8tN+jQr8NGUwuWpk1Vnq4W8fpP/dAbOuPCFQPXNYUOz3dm2McFaSnhxTYI6SIEJ7mxIBgTM6XPMoIr9L9BeiQ3RycpHptCLF63yCZm+eBeYkpAPpe12st+27bI6s2aTfNc41fIgoY3c/jsnzQmzSsB4G9qsqlVWETzyuAp53aSJAOjPWpoxT0mtGN+miOPQeB3Qjy0tvF5asLGLivGxkt8IUUJMFBwSPYldF4LkaGupZ0XMzNQN8tAV0/bmhjJqTPtGqfQ8rldyM166gC8LtBYE+VdM57ES2zKi/Gucr7dFYCPRQnMk6d4akl78amyAaPtswVPwbC2Zt/T7hqEnEljy9PWy4XEiZ9PAnajlVwajK5rh4/Ee3BbXYWq805tgLIZMqOT/wZsiNcZ3Y7JZqTxxezvg3E71mqXoGEu1quEtuzi8aVTbkqZQP/6QTVXmle1OR5fC4P0zF9G4rVM1By99AQnEnYxGyx68Zer+QkT87aOBgPvg5Q/h3TXH7dTn+QWKPEy9lj/5sq51vHpxBDJYjM63HRbPtm+0kmB5hs52USibU/W4k2t3BPqQ8MP+kiT8Gy1bvu0lZpIljukK2Ug2V9v7Am7wGEO/l9WF7Iw1NTUNfMnFt7V4KcAHKVvtFjv2JLWfa9VkdLyF5UNRoUmLIjEqnY5rLYb1h/7d+HavP55xGpgQLstxgs2U2ph7myIUAP3erkcC0C0LdPFJ3gJOyLZ2uMi/+w4atu/84CrXp5lBmSa9si5h8vm3o8DuXBjJ4Ca0i0tXDp9W2CLzKfOu3Hg0gyvcsEYFMbB+HTPP6cbwnMjTDeP5u/GP2UNIBhyQbyfhAzo0/ZzJaX/NkTstKM1UCzRqJiPpsS/ZiSerlbnkvY4MuMc8ADCqVjXGrKJxI7zd06MxWeXSWZ+xro/Reid0LMYUjBym2ftaM5fBjZbnPgzvT6q7JnTX55zWYdaaYOIbRUTQPs9Yo+YlZZJi9sJGf23QEzRIKweQRMIlrPaXk/NJLV5BajchYTwu5WESBuKbwTxnhO/sjnlU9LeI5oDy8GRZCv1VEGbv9tVXDIyI1zwUI7hw47BW8a+M5FJZZrb8LvPy+YrvAMf3xoK1ugeLRqhL9tD6w7VhWna6I4X2y/kShQ0gil2Rtf4qmrM8+mu9yp8OgaubkEe2vdrS3wqCaQAZE7MQ3pnc617hQgoUmcVim5sDRYgoBmET7Cb5ui9T+3ruMvf7JvgAAAAABJRU5ErkJggg==);
+}
 
 .board {
     display: grid;
@@ -38,20 +40,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -20vh;
 }
-
-#turn {
-    margin-top: 25vh;
-    margin-bottom: -20vh;
-}
-
 .gameboard {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding-top: 15vh;
 }
-
+.board {
+    margin: -25vh 0;
+}
 #result {
     font-size: 30px
 }
