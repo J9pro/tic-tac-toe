@@ -1,9 +1,9 @@
 # Our Awesome Tic-Tac-Toe project
 Our attempt at a tic tac toe as a first group project in order to get to know each other and learn how to work together!
 
-**Link to project:** http://recruiters-love-seeing-live-demos.com
+**Play it yourself!:** (https://team2tictactoe.netlify.app/)
 
-![alt tag](http://placecorgi.com/1200/650)
+![our tic tac toe gif](https://raw.githubusercontent.com/andresgonzalezarbildi/tic-tac-toe/main/tictactoe.gif)
 
 ## How It's Made:
 
@@ -12,8 +12,7 @@ Our attempt at a tic tac toe as a first group project in order to get to know ea
 We also used an agile metodology in order to make our work flow better and more organized
 
 ## Optimizations
-*(optional)*
-Work in progress
+There are some features that we could add if we work on them longer, but the main features that we wanted are there.
 
 ## Lessons Learned:
 
