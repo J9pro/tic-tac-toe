@@ -3,13 +3,56 @@ const myTurn = document.querySelector("#turn");
 const board = document.querySelectorAll(".board div");
 const result = document.querySelector("#gameResult");
 const botTurn = document.querySelector("#bot");
+const wins = document.querySelector("#wins");
+const looses = document.querySelector("#looses");
+const ties = document.querySelector("#ties");
 
 let gameOn = true;
 let turn = "X";
 let didBotPlay = true;
+let timer;
+
+//LOCAL STORAGE W/L/T STORAGE
+if (!localStorage.getItem("winEasy")) {
+  localStorage.setItem("winEasy", 0);
+}
+if (!localStorage.getItem("looseEasy")) {
+  localStorage.setItem("looseEasy", 0);
+}
+if (!localStorage.getItem("tiedEasy")) {
+  localStorage.setItem("tiedEasy", 0);
+}
+
+showTurn();
+updateScore();
+
 // function restarT() {
 restartBtn.addEventListener("click", () => {
-  showTurn();
+  let a1 = document.querySelector("#a1").innerHTML;
+  let a2 = document.querySelector("#a2").innerHTML;
+  let a3 = document.querySelector("#a3").innerHTML;
+  let b1 = document.querySelector("#b1").innerHTML;
+  let b2 = document.querySelector("#b2").innerHTML;
+  let b3 = document.querySelector("#b3").innerHTML;
+  let c1 = document.querySelector("#c1").innerHTML;
+  let c2 = document.querySelector("#c2").innerHTML;
+  let c3 = document.querySelector("#c3").innerHTML;
+  if (
+    gameOn &&
+    (a1 !== "" ||
+      a2 !== "" ||
+      a3 !== "" ||
+      b1 !== "" ||
+      b2 !== "" ||
+      b3 !== "" ||
+      c1 !== "" ||
+      c2 !== "" ||
+      c3 !== "")
+  ) {
+    localStorage.setItem("looseEasy", +localStorage.getItem("looseEasy") + 1);
+    updateScore();
+  }
+  clearTimeout(timer);
   board.forEach((element) => {
     element.innerHTML = "";
 
@@ -17,9 +60,10 @@ restartBtn.addEventListener("click", () => {
     element.style.color = "black";
     gameOn = true;
     didBotPlay = true;
-    turn = 'X'
-    document.querySelector("#turn").style.display = "";
+    turn = "X";
+    myTurn.style.display = "";
   });
+  showTurn();
 });
 
 //Main Functionality
@@ -37,7 +81,7 @@ board.forEach((element) => {
         // UNCOMMENT TO PLAY AGAINST A RANDOM BOT
 
         didBotPlay = false;
-        setTimeout(function () {
+        timer = setTimeout(() => {
           randomMove();
         }, Math.floor(Math.random() * 800) + 400);
       }
@@ -90,7 +134,12 @@ function checkWin() {
   else if ((a1 && a2 && a3 && b1 && b2 && b3 && c1 && c2 && c3) !== "") {
     // show tie result
     document.querySelector("#gameResult").innerHTML = "It's a DRAW!";
+    //updates localstorage score
+    localStorage.setItem("tiedEasy", +localStorage.getItem("tiedEasy") + 1);
+    updateScore();
+
     gameOn = false;
+
     //dont show turn
     document.querySelector("#turn").style.display = "none";
   }
@@ -98,30 +147,47 @@ function checkWin() {
 // CHANGE COLORS ON WIN
 function showWinnerSet(first, second, third) {
   winners = [first, second, third];
-  if (turn === 'X') {
+  if (turn === "X") {
     document.querySelector("#gameResult").innerHTML = `You won! `;
-  } else if (turn === 'O') {
+    //updates localstorage score
+    localStorage.setItem("winEasy", +localStorage.getItem("winEasy") + 1);
+    updateScore();
+  } else if (turn === "O") {
     document.querySelector("#gameResult").innerHTML = `You loose! `;
-    
+    //updates localstorage score
+    localStorage.setItem("looseEasy", +localStorage.getItem("looseEasy") + 1);
+    updateScore();
   }
   winners.forEach((e) => (e.style.color = "limegreen"));
   gameOn = false;
   myTurn.innerHTML = "";
 }
 //Run show turn to see first move
-showTurn();
 function showTurn() {
   if (turn === "X") {
     myTurn.innerHTML = `It is your move`;
-  } else if (turn === 'O') {
+  } else if (turn === "O") {
     myTurn.innerHTML = `The bot is Thinking`;
-    
   }
 }
 //CHANGES TURN VALUE AND DISPLAY
 function changeTurns() {
   turn === "O" ? (turn = "X") : (turn = "O");
   showTurn();
+}
+
+// PLACES A BOT MOVE
+function botMove(place) {
+  if (gameOn) {
+    if (document.querySelector(`#${place}`).innerHTML === "") {
+      document.querySelector(`#${place}`).innerHTML = turn;
+      checkWin();
+      changeTurns();
+      didBotPlay = true;
+    } else {
+      randomMove();
+    }
+  }
 }
 
 // RANDOM PLAYS FOR BOT
@@ -165,16 +231,9 @@ function randomMove() {
   }
 }
 
-// PLACES A BOT MOVE
-function botMove(place) {
-  if (gameOn) {
-    if (document.querySelector(`#${place}`).innerHTML === "") {
-      document.querySelector(`#${place}`).innerHTML = turn;
-      checkWin();
-      changeTurns();
-      didBotPlay = true;
-    } else {
-      randomMove();
-    }
-  }
+//Updates the score displayed
+function updateScore() {
+  wins.innerHTML = localStorage.getItem("winEasy");
+  looses.innerHTML = localStorage.getItem("looseEasy");
+  ties.innerHTML = localStorage.getItem("tiedEasy");
 }

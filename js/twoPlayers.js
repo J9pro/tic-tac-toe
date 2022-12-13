@@ -10,6 +10,7 @@ let didBotPlay = true;
 // function restarT() {
 restartBtn.addEventListener("click", () => {
   showTurn();
+  // clears every cell
   board.forEach((element) => {
     element.innerHTML = "";
 
@@ -32,13 +33,6 @@ board.forEach((element) => {
           changeTurns();
           showTurn();
         }
-
-        // UNCOMMENT TO PLAY AGAINST A RANDOM BOT
-
-        // didBotPlay = false;
-        // setTimeout(function () {
-        //   randomMove();
-        // }, 500);
       }
     }
   });
@@ -109,61 +103,6 @@ function showTurn() {
 }
 //CHANGES TURN VALUE AND DISPLAY
 function changeTurns() {
-  turn === "O" ? (turn = "X") : (turn = "O");
+  turn === "X" ? (turn = "O") : (turn = "X");
   showTurn();
-}
-
-// RANDOM PLAYS FOR BOT
-function randomMove() {
-  let numb = Math.ceil(Math.random() * 9);
-  switch (numb) {
-    case 1:
-      botMove("a1");
-      break;
-
-    case 2:
-      botMove("a2");
-      break;
-
-    case 3:
-      botMove("a3");
-      break;
-
-    case 4:
-      botMove("b1");
-      break;
-
-    case 5:
-      botMove("b2");
-      break;
-
-    case 6:
-      botMove("b3");
-      break;
-    case 7:
-      botMove("c1");
-      break;
-
-    case 8:
-      botMove("c2");
-      break;
-
-    case 9:
-      botMove("c3");
-      break;
-  }
-}
-
-// PLACES A BOT MOVE
-function botMove(place) {
-  if (gameOn) {
-    if (document.querySelector(`#${place}`).innerHTML === "") {
-      document.querySelector(`#${place}`).innerHTML = turn;
-      checkWin();
-      changeTurns();
-      didBotPlay = true;
-    } else {
-      randomMove();
-    }
-  }
 }

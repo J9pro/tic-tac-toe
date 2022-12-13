@@ -7,9 +7,50 @@ const botTurn = document.querySelector("#bot");
 let gameOn = true;
 let turn = "X";
 let didBotPlay = true;
+let timer;
+
+//LOCAL STORAGE W/L/T STORAGE
+if (!localStorage.getItem("wins")) {
+  localStorage.setItem("wins", 0);
+}
+if (!localStorage.getItem("looses")) {
+  localStorage.setItem("looses", 0);
+}
+if (!localStorage.getItem("ties")) {
+  localStorage.setItem("ties", 0);
+}
+
+showTurn();
+updateScore();
+
 // function restarT() {
 restartBtn.addEventListener("click", () => {
-  showTurn();
+  let a1 = document.querySelector("#a1").innerHTML;
+  let a2 = document.querySelector("#a2").innerHTML;
+  let a3 = document.querySelector("#a3").innerHTML;
+  let b1 = document.querySelector("#b1").innerHTML;
+  let b2 = document.querySelector("#b2").innerHTML;
+  let b3 = document.querySelector("#b3").innerHTML;
+  let c1 = document.querySelector("#c1").innerHTML;
+  let c2 = document.querySelector("#c2").innerHTML;
+  let c3 = document.querySelector("#c3").innerHTML;
+  if (
+    gameOn &&
+    (a1 !== "" ||
+      a2 !== "" ||
+      a3 !== "" ||
+      b1 !== "" ||
+      b2 !== "" ||
+      b3 !== "" ||
+      c1 !== "" ||
+      c2 !== "" ||
+      c3 !== "")
+  ) {
+    console.log("hey");
+    localStorage.setItem("looses", +localStorage.getItem("looses") + 1);
+    updateScore();
+  }
+  clearTimeout(timer);
   board.forEach((element) => {
     element.innerHTML = "";
 
@@ -18,8 +59,9 @@ restartBtn.addEventListener("click", () => {
     gameOn = true;
     didBotPlay = true;
     turn = "X";
-    document.querySelector("#turn").style.display = "";
+    myTurn.style.display = "";
   });
+  showTurn();
 });
 
 //Main Functionality
@@ -37,7 +79,7 @@ board.forEach((element) => {
         // UNCOMMENT TO PLAY AGAINST A RANDOM BOT
 
         didBotPlay = false;
-        setTimeout(function () {
+        timer = setTimeout(function () {
           randomMove();
         }, Math.floor(Math.random() * 1200) + 400);
       }
@@ -90,6 +132,10 @@ function checkWin() {
   else if ((a1 && a2 && a3 && b1 && b2 && b3 && c1 && c2 && c3) !== "") {
     // show tie result
     document.querySelector("#gameResult").innerHTML = "It's a DRAW!";
+    //updates localstorage score
+    localStorage.setItem("ties", +localStorage.getItem("ties") + 1);
+    updateScore();
+
     gameOn = false;
     //dont show turn
     document.querySelector("#turn").style.display = "none";
@@ -100,8 +146,14 @@ function showWinnerSet(first, second, third) {
   winners = [first, second, third];
   if (turn === "X") {
     document.querySelector("#gameResult").innerHTML = `You won! `;
+    //updates localstorage score
+    localStorage.setItem("wins", +localStorage.getItem("wins") + 1);
+    updateScore();
   } else if (turn === "O") {
     document.querySelector("#gameResult").innerHTML = `You loose! `;
+    //updates localstorage score
+    localStorage.setItem("looses", +localStorage.getItem("looses") + 1);
+    updateScore();
   }
   winners.forEach((e) => (e.style.color = "limegreen"));
   gameOn = false;
@@ -165,22 +217,22 @@ function randomMove() {
 }
 //THIS FUNCTION DOES THE STEPS NECCESARY AFTER DOING THE ACTUAL MOVE
 function afterMove() {
-checkWin();
-changeTurns();
-didBotPlay = true;
+  checkWin();
+  changeTurns();
+  didBotPlay = true;
 }
 // PLACES A BOT MOVE
 function botMove(place) {
   if (gameOn) {
-    if (isThereAWin()) {
-        botWin(isThereAWin());
-        afterMove()
-    } else if (isThereABlock()) {
-        botBlock(isThereABlock());
-      afterMove()
+    if (isThereAWin("O")) {
+      botForce(isThereAWin("O"));
+      afterMove();
+    } else if (isThereAWin("X")) {
+      botForce(isThereAWin("X"));
+      afterMove();
     } else if (document.querySelector(`#${place}`).innerHTML === "") {
       document.querySelector(`#${place}`).innerHTML = turn;
-      afterMove()
+      afterMove();
     } else {
       randomMove();
     }
@@ -188,7 +240,7 @@ function botMove(place) {
 }
 
 // A FUNCTION THAT CHECKS IF THERE IS A WINNING MOVE
-function isThereAWin() {
+function isThereAWin(whosTurn) {
   let a1 = document.querySelector("#a1").innerHTML;
   let a2 = document.querySelector("#a2").innerHTML;
   let a3 = document.querySelector("#a3").innerHTML;
@@ -199,53 +251,57 @@ function isThereAWin() {
   let c2 = document.querySelector("#c2").innerHTML;
   let c3 = document.querySelector("#c3").innerHTML;
 
-  //THIS MESS LOOKS IF THERE IS A BOT'S WINNING MOVE, HUGE CONDITIONAL THAT SHOULD NOT EXIST
+  //THIS MESS LOOKS IF THERE IS A WINNING MOVE ON THE BOARD, HUGE CONDITIONAL THAT SHOULD NOT EXIST
   switch (true) {
     case a1 === "" &&
-      ((a2 === "O" && a3 === "O") ||
-        (b1 === "O" && c1 === "O") ||
-        (b2 === "O" && c3 === "O")):
+      ((a2 === whosTurn && a3 === whosTurn) ||
+        (b1 === whosTurn && c1 === whosTurn) ||
+        (b2 === whosTurn && c3 === whosTurn)):
       return "a1";
 
     case a3 === "" &&
-      ((a2 === "O" && a1 === "O") ||
-        (b3 === "O" && c3 === "O") ||
-        (b2 === "O" && c1 === "O")):
+      ((a2 === whosTurn && a1 === whosTurn) ||
+        (b3 === whosTurn && c3 === whosTurn) ||
+        (b2 === whosTurn && c1 === whosTurn)):
       return "a3";
 
     case c1 === "" &&
-      ((c2 === "O" && c3 === "O") ||
-        (b1 === "O" && a1 === "O") ||
-        (b2 === "O" && a3 === "O")):
+      ((c2 === whosTurn && c3 === whosTurn) ||
+        (b1 === whosTurn && a1 === whosTurn) ||
+        (b2 === whosTurn && a3 === whosTurn)):
       return "c1";
 
     case c3 === "" &&
-      ((c2 === "O" && c1 === "O") ||
-        (b3 === "O" && a3 === "O") ||
-        (b2 === "O" && a1 === "O")):
+      ((c2 === whosTurn && c1 === whosTurn) ||
+        (b3 === whosTurn && a3 === whosTurn) ||
+        (b2 === whosTurn && a1 === whosTurn)):
       return "c3";
 
     case a2 === "" &&
-      ((a1 === "O" && a3 === "O") || (b2 === "O" && c2 === "O")):
+      ((a1 === whosTurn && a3 === whosTurn) ||
+        (b2 === whosTurn && c2 === whosTurn)):
       return "a2";
 
     case c2 === "" &&
-      ((c1 === "O" && c3 === "O") || (b2 === "O" && a2 === "O")):
+      ((c1 === whosTurn && c3 === whosTurn) ||
+        (b2 === whosTurn && a2 === whosTurn)):
       return "c2";
 
     case b1 === "" &&
-      ((b2 === "O" && b3 === "O") || (a1 === "O" && c1 === "O")):
+      ((b2 === whosTurn && b3 === whosTurn) ||
+        (a1 === whosTurn && c1 === whosTurn)):
       return "b1";
 
     case b3 === "" &&
-      ((b2 === "O" && b1 === "O") || (a3 === "O" && c3 === "O")):
+      ((b2 === whosTurn && b1 === whosTurn) ||
+        (a3 === whosTurn && c3 === whosTurn)):
       return "b3";
 
     case b2 === "" &&
-      ((a1 === "O" && c3 === "O") ||
-        (b1 === "O" && b3 === "O") ||
-        (c1 === "O" && a3 === "O") ||
-        (c2 === "O" && a2 === "O")):
+      ((a1 === whosTurn && c3 === whosTurn) ||
+        (b1 === whosTurn && b3 === whosTurn) ||
+        (c1 === whosTurn && a3 === whosTurn) ||
+        (c2 === whosTurn && a2 === whosTurn)):
       return "b2";
 
     default:
@@ -253,76 +309,14 @@ function isThereAWin() {
   }
 }
 
-//plays the winning move for bot, given by the conditional above
-function botWin(winner) {
-  document.querySelector(`#${winner}`).innerHTML = turn;
+//plays the selected move for bot, given by the conditional above
+function botForce(move) {
+  document.querySelector(`#${move}`).innerHTML = turn;
 }
 
-function isThereABlock() {
-  let a1 = document.querySelector("#a1").innerHTML;
-  let a2 = document.querySelector("#a2").innerHTML;
-  let a3 = document.querySelector("#a3").innerHTML;
-  let b1 = document.querySelector("#b1").innerHTML;
-  let b2 = document.querySelector("#b2").innerHTML;
-  let b3 = document.querySelector("#b3").innerHTML;
-  let c1 = document.querySelector("#c1").innerHTML;
-  let c2 = document.querySelector("#c2").innerHTML;
-  let c3 = document.querySelector("#c3").innerHTML;
-
-  //THIS MESS LOOKS IF THERE IS A PLAYERS WINNING MOVE, HUGE CONDITIONAL THAT SHOULD NOT EXIST
-  switch (true) {
-    case a1 === "" &&
-      ((a2 === "X" && a3 === "X") ||
-        (b1 === "X" && c1 === "X") ||
-        (b2 === "X" && c3 === "X")):
-      return "a1";
-
-    case a3 === "" &&
-      ((a2 === "X" && a1 === "X") ||
-        (b3 === "X" && c3 === "X") ||
-        (b2 === "X" && c1 === "X")):
-      return "a3";
-
-    case c1 === "" &&
-      ((c2 === "X" && c3 === "X") ||
-        (b1 === "X" && a1 === "X") ||
-        (b2 === "X" && a3 === "X")):
-      return "c1";
-
-    case c3 === "" &&
-      ((c2 === "X" && c1 === "X") ||
-        (b3 === "X" && a3 === "X") ||
-        (b2 === "X" && a1 === "X")):
-      return "c3";
-
-    case a2 === "" &&
-      ((a1 === "X" && a3 === "X") || (b2 === "X" && c2 === "X")):
-      return "a2";
-
-    case c2 === "" &&
-      ((c1 === "X" && c3 === "X") || (b2 === "X" && a2 === "X")):
-      return "c2";
-
-    case b1 === "" &&
-      ((b2 === "X" && b3 === "X") || (a1 === "X" && c1 === "X")):
-      return "b1";
-
-    case b3 === "" &&
-      ((b2 === "X" && b1 === "X") || (a3 === "X" && c3 === "X")):
-      return "b3";
-
-    case b2 === "" &&
-      ((a1 === "X" && c3 === "X") ||
-        (b1 === "X" && b3 === "X") ||
-        (c1 === "X" && a3 === "X") ||
-        (c2 === "X" && a2 === "X")):
-      return "b2";
-
-    default:
-      return false;
-  }
-}
-//a function to block the players winning move
-function botBlock(place) {
-    document.querySelector(`#${place}`).innerHTML = turn;
+//Updates the score displayed
+function updateScore() {
+  wins.innerHTML = localStorage.getItem("wins");
+  looses.innerHTML = localStorage.getItem("looses");
+  ties.innerHTML = localStorage.getItem("ties");
 }
