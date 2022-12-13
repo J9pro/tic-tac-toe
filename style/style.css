@@ -45,47 +45,62 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 .gameboard {
     flex-direction: column;
     align-items: center;
     text-align: center;
     padding-top: 10vh;
 }
+
 .board {
     margin: -25vh 0;
 }
+
 #result {
     font-size: 30px
 }
+
 a {
     text-decoration: none;
 }
-a:visited, a:active, a::after {
+
+a:visited,
+a:active,
+a::after {
     text-decoration: none;
     color: black;
 }
+
 #menu {
     margin-top: 10vh;
 }
-#restart, #menu, #harder  {
+
+#restart,
+#menu,
+#harder {
     font-size: 1.2rem;
 }
 
 #harder {
     margin-top: 5vh;
 }
+
 #score {
     display: flex;
     justify-content: center;
     color: rgb(79, 79, 79);
 }
-#score > * {
+
+#score>* {
     display: flex;
     margin: 0 2vw;
 }
-#score > * * {
+
+#score>* * {
     margin: 0 1vw;
 }
+
 /* ///////////////This is for the menu////////////////*/
 
 #letsPlay {
@@ -94,13 +109,16 @@ a:visited, a:active, a::after {
     align-items: center;
     padding: 25vh 0;
 }
+
 #letsPlay h1 {
     font-size: 3rem;
 }
-#selectGame .whichGame{
+
+#selectGame .whichGame {
     width: 5vw;
     height: 5vh;
-    font-size: 1,5rem;
+    font-size: 1, 5rem;
     min-height: 40px;
     min-width: 100px;
+    vertical-align: top;
 }
