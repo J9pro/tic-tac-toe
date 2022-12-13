@@ -5,33 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&family=Source+Sans+Pro:wght@400;700&display=swap"
+        rel="stylesheet">
+    <title>Tic-Tac-Toe</title>
 </head>
 
 <body>
-    <div class="gameboard">
-        <h2 id="turn"></h2>
-
-        <section class="board" id="board">
-            <div class="cell" id="a1"></div>
-            <div class="cell" id="a2"></div>
-            <div class="cell" id="a3"></div>
-            <div class="cell" id="b1"></div>
-            <div class="cell" id="b2"></div>
-            <div class="cell" id="b3"></div>
-            <div class="cell" id="c1"></div>
-            <div class="cell" id="c2"></div>
-            <div class="cell" id="c3"></div>
+    <section id="letsPlay">
+        <h1>Let's play some Tic-Tac-Toe</h1>
+        <h2>Do you wanna play against a bot or another player?</h2>
+        <section id="selectGame">
+            <button class="whichGame">
+                <a href="bot.html">Give me a bot!</a>
+            </button>
+            <button class="whichGame">
+                <a href="twoPlayers.html">Let us play!</a>
+            </button>
         </section>
-
-        <section id='result'>
-
-            <span id="gameResult"></span>
-            <button id="restart">Play Again</button>
-
-    </div>
-    <script src="main.js"></script>
+    </section>
 </body>
 
 </html>
