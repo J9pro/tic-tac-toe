@@ -3,7 +3,7 @@ Our attempt at a tic tac toe as a first group project in order to get to know ea
 
 **Play it yourself!:** (https://team2tictactoe.netlify.app/)
 
-![our tic tac toe gif]([http://placecorgi.com/1200/650](https://github.com/andresgonzalezarbildi/tic-tac-toe/blob/main/tictactoe.gif))
+![our tic tac toe gif](https://raw.githubusercontent.com/andresgonzalezarbildi/tic-tac-toe/main/tictactoe.gif)
 
 ## How It's Made:
 
